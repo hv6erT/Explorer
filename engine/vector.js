@@ -1,4 +1,4 @@
-class Vector {
+export default class Vector {
     constructor(vectorOptions) {
         this.x = 0;
         this.y = 0;
@@ -15,7 +15,7 @@ class Vector {
         const mapBlockSize = map.getBlockSize();
         const gravity = function () {
             let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y - mapBlockSize);
-            while (blockAtBottom != null && blockAtBottom.blockType === "transparent") {
+            while (blockAtBottom != null && blockAtBottom.type === "penetrable") {
                 playerPxPosition.y -= mapBlockSize;
                 this.player.getDom().style.bottom = `-${playerPxPosition.y}px`;
                 blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y - mapBlockSize);
@@ -23,21 +23,21 @@ class Vector {
         };
         const goForward = function () {
             const nextBlock = map.getBlockAtPxPosition(playerPxPosition.x + 1, playerPxPosition.y);
-            if (nextBlock.blockType === "transparent") {
+            if (nextBlock.type === "penetrable") {
                 playerPxPosition.x++;
                 this.player.getDom().style.left = `${playerPxPosition.x}`;
             }
         };
         const goBackward = function () {
             const previousBlock = map.getBlockAtPxPosition(playerPxPosition.x - 1, playerPxPosition.y);
-            if (previousBlock.blockType === "transparent") {
+            if (previousBlock.type === "penetrable") {
                 playerPxPosition.x--;
                 this.player.getDom().style.left = `${playerPxPosition.x}`;
             }
         };
         const jumpTop = function () {
             const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + 1);
-            if (blockAtTop.blockType === "transparent") {
+            if (blockAtTop.type === "penetrable") {
                 playerPxPosition.y++;
                 this.player.getDom().style.left = `-${playerPxPosition.y}px`;
             }
@@ -68,4 +68,3 @@ class Vector {
         }
     }
 }
-export default Vector;

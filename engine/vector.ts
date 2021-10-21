@@ -29,7 +29,7 @@ export default class Vector {
 		const gravity = function(){
           	let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y-mapBlockSize)
           
-          	while(blockAtBottom!=null && blockAtBottom.blockType === "penetrable"){
+          	while(blockAtBottom!=null && blockAtBottom.type === "penetrable"){
               	playerPxPosition.y-=mapBlockSize
               	this.player.getDom().style.bottom = `-${playerPxPosition.y}px`
               	blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y-mapBlockSize)
@@ -39,7 +39,7 @@ export default class Vector {
 		const goForward = function () {
           	const nextBlock = map.getBlockAtPxPosition(playerPxPosition.x+1, playerPxPosition.y)
 
-          	if(nextBlock.blockType === "penetrable"){
+          	if(nextBlock.type === "penetrable"){
               	playerPxPosition.x++
     		  	this.player.getDom().style.left=`${playerPxPosition.x}`	
             }
@@ -48,7 +48,7 @@ export default class Vector {
     	const goBackward = function () {
     	  	const previousBlock = map.getBlockAtPxPosition(playerPxPosition.x-1, playerPxPosition.y)
 
-          	if(previousBlock.blockType === "penetrable"){
+          	if(previousBlock.type === "penetrable"){
               	playerPxPosition.x--
     		  	this.player.getDom().style.left=`${playerPxPosition.x}`	
             }
@@ -56,7 +56,7 @@ export default class Vector {
 
     	const jumpTop = function () {
     	  	const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+1)
-          	if(blockAtTop.blockType === "penetrable"){
+          	if(blockAtTop.type === "penetrable"){
               	playerPxPosition.y++
     		  	this.player.getDom().style.left=`-${playerPxPosition.y}px`
             }

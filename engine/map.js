@@ -14,7 +14,7 @@ export class HTMLScrollMapElement extends HTMLDivElement {
 }
 customElements.define("game-map", HTMLMapElement);
 customElements.define("game-scroll-map", HTMLScrollMapElement);
-class Map {
+export default class Map {
     constructor(mapOptions) {
         this.xStartScroll = 0;
         this.yStartScroll = 0;
@@ -125,4 +125,3 @@ class Map {
         return this.dom;
     }
 }
-export default Map;

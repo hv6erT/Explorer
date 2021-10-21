@@ -7,7 +7,7 @@ export class HTMLPlayerElement extends HTMLDivElement {
     }
 }
 customElements.define("game-player", HTMLPlayerElement);
-class Player {
+export default class Player {
     constructor(playerOptions) {
         this.backgroundImage = null;
         this.forwardSpeed = 5;
@@ -81,4 +81,3 @@ class Player {
         return this.dom;
     }
 }
-export default Player;

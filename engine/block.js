@@ -6,7 +6,7 @@ export class HTMLBlockElement extends HTMLDivElement {
     }
 }
 customElements.define("game-block", HTMLBlockElement);
-class Block {
+export default class Block {
     constructor(blockOptions) {
         this.backgroundImage = null;
         this.backgroundColor = "transparent";
@@ -41,4 +41,3 @@ class Block {
         return this.dom;
     }
 }
-export default Block;
