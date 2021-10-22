@@ -3,12 +3,23 @@
   	<head>
       	<title>Explorer game</title>
       	<script type="module" defer src="js/loader.js"></script>
+
+      	<link href="loader.css" rel="stylesheet">
+      
+      	<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     </head>
-  	<body style="padding: 0; margin: 0;">
+  	<body style="padding: 0; margin: 0; font-family: 'Press Start 2P', cursive;">
       	<main style="width: 100vw; height: 100vh; ">
       		<div id="game-wrapper"></div>
-  			<div id="start-wrapper">
-              	
+  			<div id="start-wrapper" style="display: flex; flex-direction: column;">
+              	<h1 style="width: 100%; height: 30%; text-align: center;">Explorer</h1>
+              	<div id="start-wrapper-loader" style="width: 100%; height: 50%; display: flex; justify-content: center;">
+                  	<div class="loader"></div>
+                </div>
+              	<span id="start-wrapper-load-info" style="width: 100%; height: 20%; text-align: center; font-style: italic; font-size: 12px;">Click here to start</span>
             </div>
         </main>
       	<footer>

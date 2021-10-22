@@ -1,0 +1,33 @@
+.loader {
+  width: 69px;
+  height: 12px;
+  display: grid;
+  animation:loader-0 2s infinite linear; 
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  background:
+  radial-gradient(farthest-side,currentColor 90%,#0000) left,
+  radial-gradient(farthest-side,currentColor 90%,#0000) right;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  animation:loader-1 1s infinite linear; 
+}
+.loader:after {
+  margin-left: auto;
+  --s:-1;
+}
+
+@keyframes loader-0 {
+  0%,49.99% {transform: scaleY( 1)}
+  50%,100%  {transform: scaleY(-1)}
+}
+
+@keyframes loader-1 {
+  0%   {transform:translate(0                    ,calc(var(--s,1)*0px));width:31px}
+  33%  {transform:translate(0                    ,calc(var(--s,1)*8px));width:31px}
+  66%  {transform:translate(calc(var(--s,1)*19px),calc(var(--s,1)*8px));width:50px}
+  100% {transform:translate(calc(var(--s,1)*19px),calc(var(--s,1)*0px));width:50px}
+}
