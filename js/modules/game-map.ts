@@ -13,7 +13,7 @@ interface Biome{
 }
 
 export default class GameMap{ 
-  	static node: (HTMLElement | null) = null
+  	static node = document.getElementById("start-wrapper")
 	static mapHeight = 9
 	static mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height)/GameMap.mapHeight
 	static mapWidth = 100

@@ -7,7 +7,6 @@ const load = async ()=>{
   	gameWrapperNode.style.display="block"
   
   	GameMap = await import("./modules/game-map.js")
-  	GameMap.node = gameWrapperNode
 
   	gameWrapperNode.style.display="none"
   	startWrapperNode.style.display="block"
