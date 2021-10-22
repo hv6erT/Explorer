@@ -1,6 +1,6 @@
 "use strict";
-import Map from "/Explorer/src/engine/map.js";
-import Block from "/Explorer/src/engine/block.js";
+import Map from "../../engine/map.js";
+import Block from "../../engine/block.js";
 export default class GameMap {
     static async generate(newMapFragmentLength) {
         const newBlocks = [];
@@ -46,7 +46,7 @@ export default class GameMap {
         if (GameMap.map !== undefined)
             throw new Error("Trying to create new map, one has already exist");
         const newMapOptions = {
-            blocks: GameMap.generate(GameMap.mapOptions.mapWidth),
+            blocks: await GameMap.generate(GameMap.mapOptions.mapWidth),
             xStartScroll: 2,
             yStartScroll: 0,
             background: `url(${(GameMap.mapOptions.mapBackground)})`

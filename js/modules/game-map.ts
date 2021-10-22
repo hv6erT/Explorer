@@ -1,10 +1,10 @@
 "use strict"
 
-import Map from "/Explorer/src/engine/map.js"
-import {MapOptions} from "/Explorer/src/engine/map.js"
+import Map from "../../engine/map.js"
+import {MapOptions} from "../../engine/map.js"
 
-import Block from "/Explorer/src/engine/block.js"
-import {BlockOptions} from "/Explorer/src/engine/block.js"
+import Block from "../../engine/block.js"
+import {BlockOptions} from "../../engine/block.js"
 
 interface Biome{
   	onGroundBlocksOptions: BlockOptions[],
@@ -61,7 +61,7 @@ export default class GameMap{
         }
     }
   	static map: Map
-  	static async generate(newMapFragmentLength: number){
+  	static async generate(newMapFragmentLength: number): Promise<Block[]>{
       	const newBlocks: Block[] = []
       	const newBiomeName = Object.keys(GameMap.mapOptions.biomes)[Math.floor(Math.random() * (Object.keys(GameMap.mapOptions).length))]
       	const newBiomeOptions: Biome = GameMap.mapOptions[newBiomeName]
@@ -102,12 +102,12 @@ export default class GameMap{
         }
       	return newBlocks
     }
-  	static async create(){
+  	static async create(): Promise<void>{
   		if(GameMap.map !== undefined)
           	throw new Error("Trying to create new map, one has already exist")
 
       	const newMapOptions: MapOptions = {
-          	blocks: GameMap.generate(GameMap.mapOptions.mapWidth),
+          	blocks: await GameMap.generate(GameMap.mapOptions.mapWidth),
         	xStartScroll: 2,
         	yStartScroll: 0,
         	background: `url(${(GameMap.mapOptions.mapBackground)})`
