@@ -43,7 +43,7 @@ export default class GameMap {
         return newBlocks;
     }
     static async create() {
-        if (GameMap.map !== undefined)
+        if (GameMap.map === undefined)
             throw new Error("Trying to create new map, one has already exist");
         const newMapOptions = {
             blocks: await GameMap.generate(GameMap.mapOptions.mapWidth),
@@ -54,7 +54,7 @@ export default class GameMap {
         GameMap.map = new Map(newMapOptions);
     }
 }
-GameMap.node = null;
+GameMap.node = document.getElementById("game-wrapper");
 GameMap.mapHeight = 9;
 GameMap.mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height) / GameMap.mapHeight;
 GameMap.mapWidth = 100;
