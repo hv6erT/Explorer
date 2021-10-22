@@ -14,6 +14,9 @@ const loadGame = async ()=>{
 window.addEventListener("DOMContentLoaded", loadGame)
 
 const startGame = async ()=>{
+	const gameWrapperNode = document.getElementById("game-wrapper")
+  	const startWrapperNode = document.getElementById("start-wrapper")
+  
   	gameWrapperNode.style.display="none"
   	startWrapperNode.style.display="block"
 }
