@@ -4,7 +4,7 @@ const loadGame = async ()=>{
   	const startWrapperNode = document.getElementById("start-wrapper")
 
   	startWrapperNode.style.display="none"
-  	gameWrapperNode.style.display="block"
+  	gameWrapperNode.style.display=""
 
   	startWrapperNode.addEventListener("click", startGame)
   
@@ -18,7 +18,7 @@ const startGame = async ()=>{
   	const startWrapperNode = document.getElementById("start-wrapper")
   
   	gameWrapperNode.style.display="none"
-  	startWrapperNode.style.display="block"
+  	startWrapperNode.style.display=""
 }
 
 
