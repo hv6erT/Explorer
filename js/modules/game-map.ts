@@ -103,7 +103,7 @@ export default class GameMap{
       	return newBlocks
     }
   	static async create(): Promise<void>{
-  		if(GameMap.map !== undefined)
+  		if(GameMap.map === undefined)
           	throw new Error("Trying to create new map, one has already exist")
 
       	const newMapOptions: MapOptions = {
