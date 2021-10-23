@@ -45,7 +45,8 @@ export default class Map {
     	dom.style.display = "flex"
     	dom.style.flexDirection = "column"
     	dom.style.flexWrap = "wrap"
-    	dom.style.position="relative"
+    	dom.style.position = "relative"
+    	dom.style.height = "100%"
     	dom.style.left = `${this.xStartScroll}px`
     	dom.style.bottom = `-${this.yStartScroll}px`
 
@@ -62,6 +63,8 @@ export default class Map {
         }
 
     	const scrollDom = new HTMLScrollMapElement()
+    	scrollDom.style.height = "100%"
+    	scrollDom.style.width = "100%"
     	scrollDom.style.overflow = "hidden"
     	scrollDom.style.cursor = "none"
 
