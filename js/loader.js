@@ -2,22 +2,25 @@ let GameMap
 const loadGame = async ()=>{
   	const gameWrapperNode = document.getElementById("game-wrapper")
   	const startWrapperNode = document.getElementById("start-wrapper")
+  	const startWrapperLoaderInfoNode = document.getElementById("start-wrapper-loader-info")
+  	const startWrapperLoaderNode = document.getElementById("start-wrapper-loader")
 
-  	startWrapperNode.style.display=""
   	gameWrapperNode.style.display="none"
-
-  	startWrapperNode.addEventListener("click", startGame)
+  	startWrapperLoaderInfoNode.style.display="none"
   
   	GameMap = await import("./modules/game-map.js")
+
+  	startWrapperLoaderNode.style.display ="none"
+  	startWrapperLoaderInfoNode.style.display=""
+	startWrapperNode.addEventListener("click", startGame)
+  	
 }
 
 window.addEventListener("DOMContentLoaded", loadGame)
 
 const startGame = async ()=>{
-	const gameWrapperNode = document.getElementById("game-wrapper")
   	const startWrapperNode = document.getElementById("start-wrapper")
   
-  	gameWrapperNode.style.display=""
   	startWrapperNode.style.display="none"
 }
 
