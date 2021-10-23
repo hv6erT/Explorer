@@ -43,7 +43,7 @@ export default class GameMap {
         return newBlocks;
     }
     static async create() {
-        if (GameMap.map === undefined)
+        if (GameMap.map !== undefined)
             throw new Error("Trying to create new map, one has already exist");
         const newMapOptions = {
             blocks: await GameMap.generate(GameMap.mapWidth),
