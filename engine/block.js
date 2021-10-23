@@ -23,8 +23,10 @@ export default class Block {
     }
     render() {
         const dom = new HTMLBlockElement();
-        if (this.backgroundImage !== null)
+        if (this.backgroundImage !== null) {
             dom.style.backgroundImage = `url(${this.backgroundImage})`;
+            dom.style.backgroundSize = "cover";
+        }
         if (this.backgroundColor !== null)
             dom.style.backgroundColor = this.backgroundColor;
         if (this.size !== null) {
