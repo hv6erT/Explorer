@@ -8,9 +8,11 @@ const loadGame = async ()=>{
   	gameWrapperNode.style.display="none"
   
   	startWrapperLoaderInfoNode.style.visibility="hidden"
-  
-  	{GameMap} = await import("./modules/game-map.js")
-  	console.log(GameMap)
+
+  	if(!GameMap){
+    	const module = await import("./modules/game-map.js")
+    	GameMap = module.default
+    }
 
   	startWrapperLoaderNode.style.visibility ="hidden"
   	startWrapperLoaderInfoNode.style.visibility=""
