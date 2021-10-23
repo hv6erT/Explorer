@@ -17,9 +17,9 @@ export default class GameMap{
 	private static mapHeight = 9
 	private static mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height)/GameMap.mapHeight
 	private static mapWidth = 100
-	private static mapBackground: "assets/sky.png"
-	private static biomes: {
-          "outside": {
+	private static mapBackground = "assets/sky.png"
+	private static biomes = {
+        outside: {
             onGroundBlocksOptions: [
               {
                 type: "penetrable",
@@ -34,9 +34,9 @@ export default class GameMap{
               {
                 type: "impenetrable",
                 backgroundImage: "assets/ground-dirt.png"
-              }]
-          },
-          "cave": {
+			}]
+        },
+        cave: {
             onGroundBlocksOptions: [
               {
                 type: "penetrable",
@@ -52,8 +52,8 @@ export default class GameMap{
                 type: "impenetrable",
                 backgroundImage: "assets/ground-rock.png"
               }]
-          },
-        }
+          }
+      }
   	private static activeMapFactors = {
       	mapSkyHeight: 6, 
 		mapGroundHeight: 3
@@ -108,7 +108,7 @@ export default class GameMap{
           	blocks: await GameMap.generate(GameMap.mapWidth),
         	xStartScroll: 2,
         	yStartScroll: 0,
-        	background: `url(${(GameMap.mapBackground)})`
+        	background: `url(${GameMap.mapBackground})`
         }
 
       	GameMap.map = new Map(newMapOptions)

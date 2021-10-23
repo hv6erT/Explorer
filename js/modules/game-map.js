@@ -49,7 +49,7 @@ export default class GameMap {
             blocks: await GameMap.generate(GameMap.mapWidth),
             xStartScroll: 2,
             yStartScroll: 0,
-            background: `url(${(GameMap.mapBackground)})`
+            background: `url(${GameMap.mapBackground})`
         };
         GameMap.map = new Map(newMapOptions);
     }
@@ -58,6 +58,49 @@ GameMap.node = document.getElementById("game-wrapper");
 GameMap.mapHeight = 9;
 GameMap.mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height) / GameMap.mapHeight;
 GameMap.mapWidth = 100;
+GameMap.mapBackground = "assets/sky.png";
+GameMap.biomes = {
+    outside: {
+        onGroundBlocksOptions: [
+            {
+                type: "penetrable",
+                backgroundImage: "assets/grass.png"
+            }
+        ],
+        coverBlocksOptions: [
+            {
+                type: "impenetrable",
+                backgroundImage: "assets/ground.png"
+            }
+        ],
+        groundBlocksOptions: [
+            {
+                type: "impenetrable",
+                backgroundImage: "assets/ground-dirt.png"
+            }
+        ]
+    },
+    cave: {
+        onGroundBlocksOptions: [
+            {
+                type: "penetrable",
+                backgroundImage: "assets/rock.png"
+            }
+        ],
+        coverBlocksOptions: [
+            {
+                type: "impenetrable",
+                backgroundImage: "assets/ground-cave.png"
+            }
+        ],
+        groundBlocksOptions: [
+            {
+                type: "impenetrable",
+                backgroundImage: "assets/ground-rock.png"
+            }
+        ]
+    }
+};
 GameMap.activeMapFactors = {
     mapSkyHeight: 6,
     mapGroundHeight: 3
