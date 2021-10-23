@@ -112,6 +112,8 @@ export default class GameMap{
         }
 
       	GameMap.map = new Map(newMapOptions)
+      	const mapNode = GameMap.map.render()
+      	GameMap.node.appendChild(mapNode)
       	
     }
 }

@@ -52,6 +52,8 @@ export default class GameMap {
             background: `url(${GameMap.mapBackground})`
         };
         GameMap.map = new Map(newMapOptions);
+        const mapNode = GameMap.map.render();
+        GameMap.node.appendChild(mapNode);
     }
 }
 GameMap.node = document.getElementById("game-wrapper");
