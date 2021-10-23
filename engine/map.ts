@@ -11,8 +11,8 @@ export class HTMLScrollMapElement extends HTMLDivElement{
 }
 
 
-customElements.define("game-map", HTMLMapElement)
-customElements.define("game-scroll-map", HTMLScrollMapElement)
+customElements.define("game-map", HTMLMapElement, { extends: 'div' })
+customElements.define("game-scroll-map", HTMLScrollMapElement, { extends: 'div' })
 
 export interface MapOptions{
   	blocks: Block[]

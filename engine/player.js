@@ -6,7 +6,7 @@ export class HTMLPlayerElement extends HTMLDivElement {
         return this;
     }
 }
-customElements.define("game-player", HTMLPlayerElement);
+customElements.define("game-player", HTMLPlayerElement, { extends: 'div' });
 export default class Player {
     constructor(playerOptions) {
         this.backgroundImage = null;

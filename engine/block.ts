@@ -3,7 +3,7 @@ export class HTMLBlockElement extends HTMLDivElement{
 	block: (Block | null) = null
 }
 
-customElements.define("game-block", HTMLBlockElement)
+customElements.define("game-block", HTMLBlockElement, { extends: 'div' })
 
 export type BlockType = "impenetrable" | "penetrable"
 

@@ -5,7 +5,7 @@ export class HTMLBlockElement extends HTMLDivElement {
         return this;
     }
 }
-customElements.define("game-block", HTMLBlockElement);
+customElements.define("game-block", HTMLBlockElement, { extends: 'div' });
 export default class Block {
     constructor(blockOptions) {
         this.backgroundImage = null;

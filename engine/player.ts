@@ -5,7 +5,7 @@ export class HTMLPlayerElement extends HTMLDivElement{
 	player: (Player | null) = null
 }
 
-customElements.define("game-player", HTMLPlayerElement)
+customElements.define("game-player", HTMLPlayerElement, { extends: 'div' })
 
 export interface PlayerOptions{
   	backgroundImage?: string
