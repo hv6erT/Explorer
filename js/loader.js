@@ -6,12 +6,14 @@ const loadGame = async ()=>{
   	const startWrapperLoaderNode = document.getElementById("start-wrapper-loader")
 
   	gameWrapperNode.style.display="none"
-  	startWrapperLoaderInfoNode.style.display="none"
+  
+  	startWrapperLoaderInfoNode.style.visibility="hidden"
   
   	GameMap = await import("./modules/game-map.js")
 
-  	startWrapperLoaderNode.style.display ="none"
-  	startWrapperLoaderInfoNode.style.display=""
+  	startWrapperLoaderNode.style.visibility ="hidden"
+  	startWrapperLoaderInfoNode.style.visibility=""
+  
 	startWrapperNode.addEventListener("click", startGame)
   	
 }
