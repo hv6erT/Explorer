@@ -35,11 +35,13 @@ export default class Map {
   blocks: Block[]
   xStartScroll: number = 0
   yStartScroll: number = 0
-  background: string | null = null
+  background: (string | null) = null
   render(): HTMLMapElement {    
     	const dom = new HTMLMapElement()
-    	if(this.background !== null)
+    	if(this.background !== null){
     		dom.style.background = this.background
+          	dom.style.backgroundSize = "cover"
+        }
     	dom.style.display = "flex"
     	dom.style.flexDirection = "column"
     	dom.style.flexWrap = "wrap"
