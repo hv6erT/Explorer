@@ -28,8 +28,8 @@ const startGame = async ()=>{
   
   	startWrapperNode.style.display="none"
   	gameWrapperNode.style.display=""
-
-  	GameMap.create()
+	console.log(GameMap)
+  	await GameMap.create()
   
 }
 
