@@ -16,17 +16,7 @@
   100% {background-position: 100% 0,100% 100%,0 100%,0 0}
 }
 
-@keyframes loader-text {
-  0%   {transform:translate(0                    ,calc(var(--s,1)*0px));width:31px}
-  33%  {transform:translate(0                    ,calc(var(--s,1)*8px));width:31px}
-  66%  {transform:translate(calc(var(--s,1)*19px),calc(var(--s,1)*8px));width:50px}
-  100% {transform:translate(calc(var(--s,1)*19px),calc(var(--s,1)*0px));width:50px}
-}
-
 .loader-text {
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 30px;
-  animation:c1 1s linear infinite alternate;
+  animation: loader-text 1s linear infinite alternate;
 }
-@keyframes loader-text- {to{opacity: 0}}
+@keyframes loader-text {to{opacity: 0}}
