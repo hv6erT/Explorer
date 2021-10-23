@@ -13,17 +13,12 @@ interface Biome{
 }
 
 export default class GameMap{ 
-  	static node = document.getElementById("game-wrapper")
-	static mapHeight = 9
-	static mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height)/GameMap.mapHeight
-	static mapWidth = 100
-  	private static mapOptions = {
-		mapHeight: GameMap.mapHeight,
-		mapWidth: GameMap.mapWidth,
-      	mapSkyHeight: 6,
-      	mapBlockSize: GameMap.mapBlockSize,
-      	mapBackground: "assets/sky.jpg",
-      	biomes: {
+  	private static node = document.getElementById("game-wrapper")
+	private static mapHeight = 9
+	private static mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height)/GameMap.mapHeight
+	private static mapWidth = 100
+	private static mapBackground: "assets/sky.png"
+	private static biomes: {
           "outside": {
             onGroundBlocksOptions: [
               {
@@ -59,42 +54,45 @@ export default class GameMap{
               }]
           },
         }
+  	private static activeMapFactors = {
+      	mapSkyHeight: 6, 
+		mapGroundHeight: 3
     }
   	static map: Map
   	static async generate(newMapFragmentLength: number): Promise<Block[]>{
       	const newBlocks: Block[] = []
-      	const newBiomeName = Object.keys(GameMap.mapOptions.biomes)[Math.floor(Math.random() * (Object.keys(GameMap.mapOptions).length))]
-      	const newBiomeOptions: Biome = GameMap.mapOptions[newBiomeName]
+      	const newBiomeName = Object.keys(GameMap.biomes)[Math.floor(Math.random() * (Object.keys(GameMap.activeMapFactors).length))]
       	for(let newMapFragmentNumber = 0; newMapFragmentNumber<newMapFragmentLength; newMapFragmentNumber++){
-          	GameMap.mapOptions.mapSkyHeight = Math.floor(Math.random() * 3) + GameMap.mapOptions.mapSkyHeight
-          	for(let i=0; i<GameMap.mapOptions.mapSkyHeight; i++){
+          	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + GameMap.activeMapFactors.mapSkyHeight
+			GameMap.activeMapFactors.mapGroundHeight = GameMap.mapHeight - GameMap.activeMapFactors.mapSkyHeight
+          	for(let i=0; i<GameMap.activeMapFactors.mapSkyHeight; i++){
               	const newBlockOptions: BlockOptions = {
                   	type: "penetrable",
                 	backgroundColor: "transparent",
-                	size: GameMap.mapOptions.mapBlockSize
+                	size: GameMap.mapBlockSize
                 }
-              	if(i === (GameMap.mapOptions.mapSkyHeight-1)){
+              	if(i === (GameMap.activeMapFactors.mapSkyHeight-1)){
                   	if(Math.random() < 0.5){
-                      	newBlockOptions.backgroundImage = GameMap.mapOptions.biomes[newBiomeName].onGroundBlocksOptions[Math.floor(Math.random() * GameMap.mapOptions.biomes[newBiomeName].onGroundBlocksOptions.length)]
+                      	newBlockOptions.backgroundImage = GameMap.biomes[newBiomeName].onGroundBlocksOptions[Math.floor(Math.random() * GameMap.biomes[newBiomeName].onGroundBlocksOptions.length)]
                     }
                 }
               	const newBlock = new Block(newBlockOptions)
               	newBlocks.push(newBlock)
             }
-        	for(let i=0; i<(GameMap.mapOptions.mapHeight - GameMap.mapOptions.mapSkyHeight); i++){
+        	for(let i=0; i<GameMap.activeMapFactors.mapGroundHeight; i++){
               	const defaultNewBlockOptions: BlockOptions = {
-                  	type: "penetrable",
+                  	type: "impenetrable",
                 	backgroundColor: "transparent",
-                	size: GameMap.mapOptions.mapBlockSize
+                	size: GameMap.mapBlockSize
                 }
 				if(i === 0){
-                  	const newBlockOptions = GameMap.mapOptions.biomes[newBiomeName].coverBlocksOptions[Math.floor(Math.random() * GameMap.mapOptions.biomes[newBiomeName].coverBlocksOptions.length)]
-                  	const newBlock = new Block(newBlockOptions)
+                  	const newBlockOptions = GameMap.biomes[newBiomeName].coverBlocksOptions[Math.floor(Math.random() * GameMap.biomes[newBiomeName].coverBlocksOptions.length)]
+                  	const newBlock = new Block({...defaultNewBlockOptions, ...newBlockOptions})
               		newBlocks.push(newBlock)
                 }
               	else{
-                  	const newBlockOptions = GameMap.mapOptions.biomes[newBiomeName].groundBlocksOptions[Math.floor(Math.random() * GameMap.mapOptions.biomes[newBiomeName].groundBlocksOptions.length)]
-                  	const newBlock = new Block(newBlockOptions)
+                  	const newBlockOptions = GameMap.biomes[newBiomeName].groundBlocksOptions[Math.floor(Math.random() * GameMap.biomes[newBiomeName].groundBlocksOptions.length)]
+                  	const newBlock = new Block({...defaultNewBlockOptions, ...newBlockOptions})
               		newBlocks.push(newBlock)
                 }
               	
@@ -107,10 +105,10 @@ export default class GameMap{
           	throw new Error("Trying to create new map, one has already exist")
 
       	const newMapOptions: MapOptions = {
-          	blocks: await GameMap.generate(GameMap.mapOptions.mapWidth),
+          	blocks: await GameMap.generate(GameMap.mapWidth),
         	xStartScroll: 2,
         	yStartScroll: 0,
-        	background: `url(${(GameMap.mapOptions.mapBackground)})`
+        	background: `url(${(GameMap.mapBackground)})`
         }
 
       	GameMap.map = new Map(newMapOptions)

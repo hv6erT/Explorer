@@ -55,6 +55,7 @@ export default class Map {
         }
         const scrollDom = new HTMLScrollMapElement();
         scrollDom.style.overflow = "hidden";
+        scrollDom.style.cursor = "none";
         dom.map = this;
         scrollDom.appendChild(dom);
         scrollDom.map = this;
