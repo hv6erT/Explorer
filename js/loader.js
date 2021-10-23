@@ -21,9 +21,16 @@ const loadGame = async ()=>{
 window.addEventListener("DOMContentLoaded", loadGame)
 
 const startGame = async ()=>{
+  	if(!GameMap)
+      	throw new Error("Cannot start game when it is not loaded, use loadGame first")
   	const startWrapperNode = document.getElementById("start-wrapper")
+  	const gameWrapperNode = document.getElementById("game-wrapper")
   
   	startWrapperNode.style.display="none"
+  	gameWrapperNode.style.display=""
+
+  	GameMap.create()
+  
 }
 
 
