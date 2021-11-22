@@ -64,6 +64,8 @@ export default class GameMap{
       	const newBiomeName = Object.keys(GameMap.biomes)[Math.floor(Math.random() * (Object.keys(GameMap.activeMapFactors).length))]
       	for(let newMapFragmentNumber = 0; newMapFragmentNumber<newMapFragmentLength; newMapFragmentNumber++){
           	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + GameMap.activeMapFactors.mapSkyHeight
+          	if(GameMap.activeMapFactors.mapSkyHeight<=0)
+              	GameMap.activeMapFactors.mapSkyHeight = 1;
 			GameMap.activeMapFactors.mapGroundHeight = GameMap.mapHeight - GameMap.activeMapFactors.mapSkyHeight
           	for(let i=0; i<GameMap.activeMapFactors.mapSkyHeight; i++){
               	const newBlockOptions: BlockOptions = {
