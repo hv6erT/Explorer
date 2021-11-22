@@ -10,6 +10,7 @@ export default class GameMap {
             GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + GameMap.activeMapFactors.mapSkyHeight;
             if (GameMap.activeMapFactors.mapSkyHeight <= 0)
                 GameMap.activeMapFactors.mapSkyHeight = lastGameMapSkyHeight;
+          	console.log(GameMap.activeMapFactors.mapSkyHeight)
             GameMap.activeMapFactors.mapGroundHeight = GameMap.mapHeight - GameMap.activeMapFactors.mapSkyHeight;
             for (let i = 0; i < GameMap.activeMapFactors.mapSkyHeight; i++) {
                 const newBlockOptions = {
