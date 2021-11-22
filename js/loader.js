@@ -1,4 +1,4 @@
-let GameMap
+let GameMap, GamePlayer
 const loadGame = async ()=>{
   	const gameWrapperNode = document.getElementById("game-wrapper")
   	const startWrapperNode = document.getElementById("start-wrapper")
@@ -13,6 +13,10 @@ const loadGame = async ()=>{
     	const module = await import("./modules/game-map.js")
     	GameMap = module.default
     }
+  	if(!GamePlayer){
+    	const module = await import("./modules/game-player.js")
+    	GamePlayer = module.default
+    }
 
   	startWrapperLoaderNode.style.visibility ="hidden"
   	startWrapperLoaderInfoNode.style.visibility=""
@@ -24,15 +28,16 @@ const loadGame = async ()=>{
 window.addEventListener("DOMContentLoaded", loadGame)
 
 const startGame = async ()=>{
-  	if(!GameMap)
-      	throw new Error("Cannot start game when it is not loaded, use loadGame first")
+  	if(!GameMap || !GamePlayer)
+      	throw new Error("Cannot start game when modules are not loaded, use loadGame first")
   	const startWrapperNode = document.getElementById("start-wrapper")
   	const gameWrapperNode = document.getElementById("game-wrapper")
-  
-  	startWrapperNode.style.display="none"
-  	gameWrapperNode.style.display=""
-	console.log(GameMap)
+
   	await GameMap.create()
+  	await GamePlayer.create()
+
+  	startWrapperNode.style.display="none"
+  	gameWrapperNode.style.display="" 	
   
 }
 

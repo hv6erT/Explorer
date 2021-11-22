@@ -63,9 +63,9 @@ export default class GameMap {
 }
 GameMap.node = document.getElementById("game-wrapper");
 GameMap.mapHeight = 9;
-GameMap.mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height) / GameMap.mapHeight;
 GameMap.mapWidth = 100;
 GameMap.mapBackground = "assets/sky.png";
+GameMap.mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height) / GameMap.mapHeight;
 GameMap.biomes = {
     outside: {
         onGroundBlocksOptions: [

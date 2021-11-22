@@ -14,10 +14,10 @@ interface Biome{
 
 export default class GameMap{ 
   	private static node = document.getElementById("game-wrapper")
-	private static mapHeight = 9
+  	static mapHeight = 9
+  	static mapWidth = 100
+	static mapBackground = "assets/sky.png"
 	private static mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height)/GameMap.mapHeight
-	private static mapWidth = 100
-	private static mapBackground = "assets/sky.png"
 	private static biomes = {
         outside: {
             onGroundBlocksOptions: [
@@ -63,12 +63,12 @@ export default class GameMap{
       	const newBlocks: Block[] = []
       	const newBiomeName = Object.keys(GameMap.biomes)[Math.floor(Math.random() * (Object.keys(GameMap.activeMapFactors).length))]
       	for(let newMapFragmentNumber = 0; newMapFragmentNumber<newMapFragmentLength; newMapFragmentNumber++){
-          	const lastGameMapSkyHeight = GameMap.activeMapFactors.mapSkyHeight;
+          	const lastGameMapSkyHeight = GameMap.activeMapFactors.mapSkyHeight
           	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + GameMap.activeMapFactors.mapSkyHeight
           	if(GameMap.activeMapFactors.mapSkyHeight <=0)
-              	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + lastGameMapSkyHeight - 3;
+              	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + lastGameMapSkyHeight - 3
           	else if (GameMap.activeMapFactors.mapSkyHeight>=(GameMap.mapHeight-1))
-              	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + lastGameMapSkyHeight - 3;
+              	GameMap.activeMapFactors.mapSkyHeight = Math.floor(Math.random() * 3) + lastGameMapSkyHeight - 3
 			GameMap.activeMapFactors.mapGroundHeight = GameMap.mapHeight - GameMap.activeMapFactors.mapSkyHeight
           	for(let i=0; i<GameMap.activeMapFactors.mapSkyHeight; i++){
               	const newBlockOptions: BlockOptions = {
