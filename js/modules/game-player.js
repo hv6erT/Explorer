@@ -1,5 +1,5 @@
 import Player from "../../engine/player.js";
-class GamePlayer {
+export default class GamePlayer {
     static async create() {
         if (GamePlayer.player !== undefined)
             throw new Error("Trying to create new player, one has already exist");

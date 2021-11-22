@@ -1,7 +1,7 @@
 import Player from "../../engine/player.js"
 import {PlayerOptions} from "../../engine/player.js"
 
-class GamePlayer {
+export default class GamePlayer {
   static playerBackground = "assets/alienGreen.png"
   static forwardSpeed = 5
   static backwardSpeed = 2
