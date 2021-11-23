@@ -1,5 +1,7 @@
 "use strict"
 
+import Game from "./game.js"
+
 import Map from "../../engine/map.js"
 import {MapOptions} from "../../engine/map.js"
 
@@ -12,8 +14,7 @@ interface Biome{
   	groundBlocksOptions: BlockOptions[]
 }
 
-export default class GameMap{ 
-  	private static node = document.getElementById("game-wrapper")
+export default class GameMap extends Game{ 
   	static mapHeight = 9
   	static mapWidth = 100
 	static mapBackground = "assets/sky.png"
@@ -117,8 +118,7 @@ export default class GameMap{
         }
 
       	GameMap.map = new Map(newMapOptions)
-      	const mapNode = GameMap.map.render()
-      	GameMap.node.appendChild(mapNode)
+      	GameMap.node.appendChild(GameMap.map.render())
       	
     }
 }

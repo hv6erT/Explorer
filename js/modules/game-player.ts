@@ -1,7 +1,9 @@
+import Game from "./game.js"
+
 import Player from "../../engine/player.js"
 import {PlayerOptions} from "../../engine/player.js"
 
-export default class GamePlayer {
+export default class GamePlayer extends Game{
   static playerBackground = "assets/alienGreen.png"
   static forwardSpeed = 5
   static backwardSpeed = 2
@@ -19,5 +21,6 @@ export default class GamePlayer {
     }
 
     GamePlayer.player = new Player(newPlayerOptions)
+    GamePlayer.node.appendChild(GamePlayer.player.render())
   }
 }

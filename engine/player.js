@@ -63,7 +63,7 @@ export default class Player {
             x: -this.backwardSpeed
         });
     }
-    chnagePosition(newXPosition, newYPosition) {
+    changePosition(newXPosition, newYPosition) {
         if (this.dom === null)
             throw new Error("Cannot move player that have not dom. Use player.render() first");
         this.xPosition = newXPosition;

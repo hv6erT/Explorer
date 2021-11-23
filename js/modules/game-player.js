@@ -1,5 +1,6 @@
+import Game from "./game.js";
 import Player from "../../engine/player.js";
-export default class GamePlayer {
+export default class GamePlayer extends Game {
     static async create() {
         if (GamePlayer.player !== undefined)
             throw new Error("Trying to create new player, one has already exist");
@@ -11,6 +12,7 @@ export default class GamePlayer {
             backwardSpeed: GamePlayer.backwardSpeed
         };
         GamePlayer.player = new Player(newPlayerOptions);
+        GamePlayer.node.appendChild(GamePlayer.player.render());
     }
 }
 GamePlayer.playerBackground = "assets/alienGreen.png";

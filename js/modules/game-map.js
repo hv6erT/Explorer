@@ -1,7 +1,8 @@
 "use strict";
+import Game from "./game.js";
 import Map from "../../engine/map.js";
 import Block from "../../engine/block.js";
-export default class GameMap {
+export default class GameMap extends Game {
     static async generate(newMapFragmentLength) {
         const newBlocks = [];
         const newBiomeName = Object.keys(GameMap.biomes)[Math.floor(Math.random() * (Object.keys(GameMap.activeMapFactors).length))];
@@ -57,11 +58,9 @@ export default class GameMap {
             background: `url(${GameMap.mapBackground})`
         };
         GameMap.map = new Map(newMapOptions);
-        const mapNode = GameMap.map.render();
-        GameMap.node.appendChild(mapNode);
+        GameMap.node.appendChild(GameMap.map.render());
     }
 }
-GameMap.node = document.getElementById("game-wrapper");
 GameMap.mapHeight = 9;
 GameMap.mapWidth = 100;
 GameMap.mapBackground = "assets/sky.png";
