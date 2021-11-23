@@ -21,6 +21,6 @@ export default class GamePlayer extends Game{
     }
 
     GamePlayer.player = new Player(newPlayerOptions)
-    GamePlayer.node.appendChild(GamePlayer.player.render())
+    GamePlayer.node.insertBefore(GamePlayer.player.render(), null)
   }
 }

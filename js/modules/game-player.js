@@ -12,7 +12,7 @@ export default class GamePlayer extends Game {
             backwardSpeed: GamePlayer.backwardSpeed
         };
         GamePlayer.player = new Player(newPlayerOptions);
-        GamePlayer.node.appendChild(GamePlayer.player.render());
+        GamePlayer.node.insertBefore(GamePlayer.player.render(), null);
     }
 }
 GamePlayer.playerBackground = "assets/alienGreen.png";
