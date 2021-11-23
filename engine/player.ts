@@ -50,9 +50,9 @@ export default class Player {
 	this.xPosition = this.xStartPosition;
     this.yPosition = this.yStartPosition;
 
-	this.dom.player = this
+	this.dom = dom
     
-    this.dom = dom
+	this.dom.player = this
     return dom
     
   }

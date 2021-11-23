@@ -39,8 +39,8 @@ export default class Player {
             dom.style.bottom = `-${this.yStartPosition}px`;
         this.xPosition = this.xStartPosition;
         this.yPosition = this.yStartPosition;
-        this.dom.player = this;
         this.dom = dom;
+        this.dom.player = this;
         return dom;
     }
     goForward() {
