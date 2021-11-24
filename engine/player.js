@@ -31,8 +31,11 @@ export default class Player {
     render() {
         const dom = new HTMLPlayerElement();
         dom.style.position = "relative";
-        if (this.backgroundImage !== null)
+        if (this.backgroundImage !== null) {
             dom.style.backgroundImage = `url(${this.backgroundImage})`;
+            dom.style.backgroundSize = "cover";
+            dom.style.backgroundRepeat = "no-repeat";
+        }
         if (this.xStartPosition !== null)
             dom.style.left = `${this.xStartPosition}px`;
         if (this.yStartPosition !== null)

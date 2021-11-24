@@ -12,6 +12,9 @@ export default class GamePlayer extends Game {
             backwardSpeed: GamePlayer.backwardSpeed
         };
         GamePlayer.player = new Player(newPlayerOptions);
+        const playerDom = GamePlayer.player.render();
+        playerDom.style.width = GamePlayer.blockSize + "px";
+        playerDom.style.height = GamePlayer.blockSize + "px";
         GamePlayer.node.insertBefore(GamePlayer.player.render(), null);
     }
 }

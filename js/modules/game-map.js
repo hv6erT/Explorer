@@ -18,7 +18,7 @@ export default class GameMap extends Game {
                 const newBlockOptions = {
                     type: "penetrable",
                     backgroundColor: "transparent",
-                    size: GameMap.mapBlockSize
+                    size: GameMap.blockSize
                 };
                 if (i === (GameMap.activeMapFactors.mapSkyHeight - 1)) {
                     if (Math.random() < 0.5) {
@@ -32,7 +32,7 @@ export default class GameMap extends Game {
                 const defaultNewBlockOptions = {
                     type: "impenetrable",
                     backgroundColor: "transparent",
-                    size: GameMap.mapBlockSize
+                    size: GameMap.blockSize
                 };
                 if (i === 0) {
                     const newBlockOptions = GameMap.biomes[newBiomeName].coverBlocksOptions[Math.floor(Math.random() * GameMap.biomes[newBiomeName].coverBlocksOptions.length)];
@@ -61,10 +61,7 @@ export default class GameMap extends Game {
         GameMap.node.appendChild(GameMap.map.render());
     }
 }
-GameMap.mapHeight = 9;
-GameMap.mapWidth = 100;
 GameMap.mapBackground = "assets/sky.png";
-GameMap.mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height) / GameMap.mapHeight;
 GameMap.biomes = {
     outside: {
         onGroundBlocksOptions: [

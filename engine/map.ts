@@ -66,6 +66,7 @@ export default class Map {
     	scrollDom.style.height = "100%"
     	scrollDom.style.width = "100%"
     	scrollDom.style.overflow = "hidden"
+    	scrollDom.style.position = "absolute"
     	scrollDom.style.cursor = "none"
 
     	dom.map = this

@@ -15,10 +15,7 @@ interface Biome{
 }
 
 export default class GameMap extends Game{ 
-  	static mapHeight = 9
-  	static mapWidth = 100
 	static mapBackground = "assets/sky.png"
-	private static mapBlockSize = parseFloat(getComputedStyle(GameMap.node).height)/GameMap.mapHeight
 	private static biomes = {
         outside: {
             onGroundBlocksOptions: [
@@ -75,7 +72,7 @@ export default class GameMap extends Game{
               	const newBlockOptions: BlockOptions = {
                   	type: "penetrable",
                 	backgroundColor: "transparent",
-                	size: GameMap.mapBlockSize
+                	size: GameMap.blockSize
                 }
               	if(i === (GameMap.activeMapFactors.mapSkyHeight-1)){
                   	if(Math.random() < 0.5){
@@ -89,7 +86,7 @@ export default class GameMap extends Game{
               	const defaultNewBlockOptions: BlockOptions = {
                   	type: "impenetrable",
                 	backgroundColor: "transparent",
-                	size: GameMap.mapBlockSize
+                	size: GameMap.blockSize
                 }
 				if(i === 0){
                   	const newBlockOptions = GameMap.biomes[newBiomeName].coverBlocksOptions[Math.floor(Math.random() * GameMap.biomes[newBiomeName].coverBlocksOptions.length)]

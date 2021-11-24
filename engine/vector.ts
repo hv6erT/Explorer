@@ -63,7 +63,7 @@ export default class Vector {
     	}
     
     	if(this.x!=0 && this.y!=0){
-          	
+          	gravity()
         }
     	else if(this.x!=0){
           	if(this.x>0){
