@@ -26,14 +26,14 @@ export default class Vector {
             const nextBlock = map.getBlockAtPxPosition(playerPxPosition.x + 1, playerPxPosition.y);
             if (nextBlock.type === "penetrable") {
                 playerPxPosition.x++;
-                self.player.getDom().style.left = `${playerPxPosition.x}`;
+                self.player.getDom().style.left = `${playerPxPosition.x}px`;
             }
         };
         const goBackward = function () {
             const previousBlock = map.getBlockAtPxPosition(playerPxPosition.x - 1, playerPxPosition.y);
             if (previousBlock.type === "penetrable") {
                 playerPxPosition.x--;
-                self.player.getDom().style.left = `${playerPxPosition.x}`;
+                self.player.getDom().style.left = `${playerPxPosition.x}px`;
             }
         };
         const jumpTop = function () {

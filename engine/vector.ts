@@ -42,7 +42,7 @@ export default class Vector {
 
           	if(nextBlock.type === "penetrable"){
               	playerPxPosition.x++
-    		  	self.player.getDom().style.left=`${playerPxPosition.x}`	
+    		  	self.player.getDom().style.left=`${playerPxPosition.x}px`	
             }
 		}
 
@@ -51,7 +51,7 @@ export default class Vector {
 
           	if(previousBlock.type === "penetrable"){
               	playerPxPosition.x--
-    		  	self.player.getDom().style.left=`${playerPxPosition.x}`	
+    		  	self.player.getDom().style.left=`${playerPxPosition.x}px`	
             }
     	}
 
