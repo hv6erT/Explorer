@@ -1,12 +1,16 @@
 import Game from "./game.js"
+import GameMap from "./game-map.js"
 
 import Player from "../../engine/player.js"
 import {PlayerOptions} from "../../engine/player.js"
 
+import Vector from "../../engine/vector.js"
+import {VectorOptions} from "../../engine/vector.js"
+
 export default class GamePlayer extends Game{
   static playerBackground = "assets/alienGreen.png"
-  static forwardSpeed = 5
-  static backwardSpeed = 2
+  static forwardSpeed: number = 5
+  static backwardSpeed: number = 2
   static player: Player
   static async create(): Promise<void>{
   	if(GamePlayer.player !== undefined)
@@ -15,9 +19,7 @@ export default class GamePlayer extends Game{
     const newPlayerOptions: PlayerOptions = {
       	backgroundImage: GamePlayer.playerBackground,
         xStartPosition: 2,
-        yStartPosition: 2,
-      	forwardSpeed: GamePlayer.forwardSpeed,
-      	backwardSpeed: GamePlayer.backwardSpeed
+        yStartPosition: 2
     }
 
     GamePlayer.player = new Player(newPlayerOptions)
@@ -26,5 +28,21 @@ export default class GamePlayer extends Game{
     playerDom.style.height = GamePlayer.blockSize + "px"
     
     GamePlayer.node.insertBefore(playerDom, null)
+  }
+  static goForward(): void{
+    	const vectorOptions: VectorOptions = {
+          	player: GamePlayer.player,
+          	x: GamePlayer.forwardSpeed
+        }
+    	const vector: Vector = new Vector(vectorOptions)
+    	vector.apply(GameMap.map)
+  }
+  static goBackward(): void{
+    	const vectorOptions: VectorOptions = {
+          	player: GamePlayer.player,
+          	x: this.backwardSpeed * (-1)
+        }
+    	const vector: Vector = new Vector(vectorOptions)
+    	vector.apply(GameMap.map)
   }
 }

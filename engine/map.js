@@ -102,15 +102,15 @@ export default class Map {
     getBlockAtPxPosition(x, y) {
         if (this.dom === null)
             throw new Error("Cannot resolve Map.getBlockAtPxPosition(), use first Map.render() to create dom");
-        const clientRect = this.dom.getBoundingClientRect();
-        const elementX = clientRect.left;
-        const elementY = clientRect.top;
-        const element = document.elementFromPoint(elementX, elementY);
+        const domRect = this.dom.getBoundingClientRect();
+        const domX = domRect.left;
+        const domY = domRect.top;
+        const element = document.elementFromPoint((domX + x), (domY + y));
         if (element.block !== undefined) {
             return element.block;
         }
         else
-            throw new Error("Cannot find any block in this position");
+            return null;
     }
     scrollX(x) {
         if (!this.dom || !this.scrollDom)

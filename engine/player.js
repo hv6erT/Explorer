@@ -1,4 +1,3 @@
-import Vector from "./vector.js";
 export class HTMLPlayerElement extends HTMLDivElement {
     constructor() {
         super();
@@ -10,8 +9,6 @@ customElements.define("game-player", HTMLPlayerElement, { extends: 'div' });
 export default class Player {
     constructor(playerOptions) {
         this.backgroundImage = null;
-        this.forwardSpeed = 5;
-        this.backwardSpeed = 3;
         this.xStartPosition = null;
         this.yStartPosition = null;
         this.dom = null;
@@ -23,10 +20,6 @@ export default class Player {
             this.xStartPosition = playerOptions.xStartPosition;
         if (playerOptions.yStartPosition !== undefined)
             this.yStartPosition = playerOptions.yStartPosition;
-        if (playerOptions.forwardSpeed !== undefined)
-            this.forwardSpeed = playerOptions.forwardSpeed;
-        if (playerOptions.backwardSpeed !== undefined)
-            this.backwardSpeed = playerOptions.backwardSpeed;
     }
     render() {
         const dom = new HTMLPlayerElement();
@@ -46,35 +39,13 @@ export default class Player {
         this.dom.player = this;
         return dom;
     }
-    goForward() {
-        if (this.dom === null)
-            throw new Error("Cannot move Player that have not dom, create it using this.render(), and then append it to DOM");
-        if (this.xPosition === null || this.yPosition === null)
-            throw new Error("Something went wrong with xPosition or yPosition");
-        return new Vector({
-            player: this,
-            x: this.forwardSpeed
-        });
+    updatePosition() {
+        if (this.dom !== undefined) {
+            this.xPosition = parseFloat(getComputedStyle(this.dom).left);
+            this.yPosition = parseFloat(getComputedStyle(this.dom).bottom) * (-1);
+        }
     }
-    goBack() {
-        if (this.dom === null)
-            throw new Error("Cannot move Player that have not dom, create it using this.render(), and then append it to DOM");
-        if (this.xPosition === null || this.yPosition === null)
-            throw new Error("Something went wrong with xPosition or yPosition");
-        return new Vector({
-            player: this,
-            x: -this.backwardSpeed
-        });
-    }
-    changePosition(newXPosition, newYPosition) {
-        if (this.dom === null)
-            throw new Error("Cannot move player that have not dom. Use player.render() first");
-        this.xPosition = newXPosition;
-        this.yPosition = newYPosition;
-        this.dom.style.left = `${newXPosition}px`;
-        this.dom.style.bottom = `-${newYPosition}px`;
-    }
-    getPxPosition() {
+    getPosition() {
         return {
             x: this.xPosition,
             y: this.yPosition

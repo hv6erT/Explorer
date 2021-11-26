@@ -20,6 +20,20 @@ const loadGame = async ()=>{
 
   	startWrapperLoaderNode.style.visibility ="hidden"
   	startWrapperLoaderInfoNode.style.visibility=""
+
+	window.addEventListener("keydown", function(event){
+      	if(!GameMap.map || !GamePlayer.player)
+          	return
+      
+      	switch (event.code){
+            case: "ArrowRight": 
+            	GamePlayer.goForward()
+            	break
+            case: "ArrowLeft":
+            	GamePlayer.goBack()
+            	break
+        }
+    })
   
 	startWrapperNode.addEventListener("click", startGame)
   	

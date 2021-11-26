@@ -11,7 +11,7 @@ export default class Vector {
     apply(map) {
         if (this.player.getDom() === null)
             throw new Error("Cannot apply new player position to player that have not dom. Use player.render() first");
-        const playerPxPosition = this.player.getPxPosition();
+        const playerPxPosition = this.player.getPosition();
         const mapBlockSize = map.getBlockSize();
         const gravity = function () {
             let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y - mapBlockSize);
@@ -39,7 +39,7 @@ export default class Vector {
             const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + 1);
             if (blockAtTop.type === "penetrable") {
                 playerPxPosition.y++;
-                this.player.getDom().style.left = `-${playerPxPosition.y}px`;
+                //this.player.getDom().style.left=`${playerPxPosition.y}px`
             }
         };
         if (this.x != 0 && this.y != 0) {
@@ -67,5 +67,6 @@ export default class Vector {
                 gravity();
             }
         }
+        this.player.updatePosition();
     }
 }
