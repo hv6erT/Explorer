@@ -122,12 +122,14 @@ export default class Map {
 		const domX = domRect.left
 		const domY = domRect.top
     
-    	const element: any = document.elementFromPoint((domX + x), (domY + y))
-    
-    	if(element.block !== undefined){
-          	return element.block
+    	const nodes: any[] = document.elementsFromPoint((domX + x), (domY + y))
+
+    	for(const node of nodes){
+        	if(node.block !== undefined){
+              	return node.block
+            }
         }
-    	else return null
+    	return null
   }
   scrollX(x: number): void{
     	if(!this.dom || !this.scrollDom)
