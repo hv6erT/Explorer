@@ -26,10 +26,10 @@ const loadGame = async ()=>{
           	return
       
       	switch (event.code){
-            case: "ArrowRight": 
+            case "ArrowRight": 
             	GamePlayer.goForward()
             	break
-            case: "ArrowLeft":
+            case "ArrowLeft":
             	GamePlayer.goBack()
             	break
         }
