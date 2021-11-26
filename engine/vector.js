@@ -13,11 +13,12 @@ export default class Vector {
             throw new Error("Cannot apply new player position to player that have not dom. Use player.render() first");
         const playerPxPosition = this.player.getPosition();
         const mapBlockSize = map.getBlockSize();
+        const self = this;
         const gravity = function () {
             let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y - mapBlockSize);
             while (blockAtBottom != null && blockAtBottom.type === "penetrable") {
                 playerPxPosition.y -= mapBlockSize;
-                this.player.getDom().style.bottom = `-${playerPxPosition.y}px`;
+                self.player.getDom().style.bottom = `-${playerPxPosition.y}px`;
                 blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y - mapBlockSize);
             }
         };
@@ -25,21 +26,21 @@ export default class Vector {
             const nextBlock = map.getBlockAtPxPosition(playerPxPosition.x + 1, playerPxPosition.y);
             if (nextBlock.type === "penetrable") {
                 playerPxPosition.x++;
-                this.player.getDom().style.left = `${playerPxPosition.x}`;
+                self.player.getDom().style.left = `${playerPxPosition.x}`;
             }
         };
         const goBackward = function () {
             const previousBlock = map.getBlockAtPxPosition(playerPxPosition.x - 1, playerPxPosition.y);
             if (previousBlock.type === "penetrable") {
                 playerPxPosition.x--;
-                this.player.getDom().style.left = `${playerPxPosition.x}`;
+                self.player.getDom().style.left = `${playerPxPosition.x}`;
             }
         };
         const jumpTop = function () {
             const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + 1);
             if (blockAtTop.type === "penetrable") {
                 playerPxPosition.y++;
-                //this.player.getDom().style.left=`${playerPxPosition.y}px`
+                //self.player.getDom().style.left=`${playerPxPosition.y}px`
             }
         };
         if (this.x != 0 && this.y != 0) {
