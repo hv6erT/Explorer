@@ -18,7 +18,7 @@ export default class Vector {
     	
   }
   readonly player: Player
-  apply(map: Map){
+  async apply(map: Map){
     	if(this.player.getDom() === null)
           	throw new Error("Cannot apply new player position to player that have not dom. Use player.render() first")
           	
@@ -52,7 +52,7 @@ export default class Vector {
 
           	if(previousBlock.type === "penetrable"){
               	playerPxPosition.x--
-    		  	self.player.getDom().style.left=`${playerPxPosition.x}px`	
+    		  	self.player.getDom().style.left=`-${playerPxPosition.x}px`	
             }
     	}
 

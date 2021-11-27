@@ -8,7 +8,7 @@ export default class Vector {
             this.x = vectorOptions.x;
         this.player = vectorOptions.player;
     }
-    apply(map) {
+    async apply(map) {
         if (this.player.getDom() === null)
             throw new Error("Cannot apply new player position to player that have not dom. Use player.render() first");
         const playerPxPosition = this.player.getPosition();
@@ -34,7 +34,7 @@ export default class Vector {
             const previousBlock = map.getBlockAtPxPosition(playerPxPosition.x - (playerWidth / 2) - 1, playerPxPosition.y);
             if (previousBlock.type === "penetrable") {
                 playerPxPosition.x--;
-                self.player.getDom().style.left = `${playerPxPosition.x}px`;
+                self.player.getDom().style.left = `-${playerPxPosition.x}px`;
             }
         };
         const jumpTop = function () {

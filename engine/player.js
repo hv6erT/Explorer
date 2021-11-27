@@ -32,7 +32,7 @@ export default class Player {
         if (this.xStartPosition !== null)
             dom.style.left = `${this.xStartPosition}px`;
         if (this.yStartPosition !== null)
-            dom.style.bottom = `-${this.yStartPosition}px`;
+            dom.style.top = `${this.yStartPosition}px`;
         this.xPosition = this.xStartPosition;
         this.yPosition = this.yStartPosition;
         this.dom = dom;
