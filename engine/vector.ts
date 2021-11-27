@@ -24,16 +24,16 @@ export default class Vector {
           	
     	const playerPxPosition: {x: number; y: number} = this.player.getPosition()
 
-    	//const mapBlockSize = map.getBlockSize()
+    	const playerHeight = parseFloat(getComputedStyle(this.player.getDom()).height)
 
     	const self = this
 		const gravity = function(){
-          	let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+1)
+          	let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+playerHeight+1)
           
           	while(blockAtBottom!=null && blockAtBottom.type === "penetrable"){
               	playerPxPosition.y++
               	self.player.getDom().style.top = `${playerPxPosition.y}px`
-              	blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+1)
+              	blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+playerHeight+1)
             }
         }
     
@@ -69,12 +69,14 @@ export default class Vector {
     	else if(this.x!=0){
           	if(this.x>0){
               	for(let i=0; i<this.x; i++){
+                  	gravity()
                   	goForward()
                   	gravity()
                 }
             }
           	else if(this.x<0){
               	for(let i=this.x; i<0; i++){
+                  	gravity()
                   	goBackward()
                   	gravity()
                 }
@@ -82,9 +84,7 @@ export default class Vector {
         }
     	else if(this.y!=0){
           	if(this.y>0){
-              	for(let i=0; i<this.y; i++){
-                  	jumpTop()
-                }
+              	//jumpTop
               	gravity();
             }
         }
