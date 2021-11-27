@@ -42,7 +42,7 @@ export default class Player {
     updatePosition() {
         if (this.dom !== undefined) {
             this.xPosition = parseFloat(getComputedStyle(this.dom).left);
-            this.yPosition = parseFloat(getComputedStyle(this.dom).bottom) * (-1);
+            this.yPosition = parseFloat(getComputedStyle(this.dom).top);
         }
     }
     getPosition() {
