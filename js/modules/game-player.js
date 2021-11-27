@@ -8,15 +8,11 @@ export default class GamePlayer extends Game {
             throw new Error("Trying to create new player, one has already exist");
         const newPlayerOptions = {
             backgroundImage: GamePlayer.playerBackground,
-            xStartPosition: 2,
-            yStartPosition: 2
+            width: GamePlayer.blockSize,
+            height: GamePlayer.blockSize
         };
         GamePlayer.player = new Player(newPlayerOptions);
-        const playerDom = GamePlayer.player.render();
-        playerDom.style.width = GamePlayer.blockSize + "px";
-        playerDom.style.height = GamePlayer.blockSize + "px";
-        GamePlayer.player.updatePosition();
-        GamePlayer.node.insertBefore(playerDom, null);
+        GamePlayer.node.insertBefore(GamePlayer.player.render(), null);
     }
     static goForward() {
         const vectorOptions = {
