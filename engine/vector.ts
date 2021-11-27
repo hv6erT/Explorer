@@ -24,8 +24,8 @@ export default class Vector {
           	
     	const playerPxPosition: {x: number; y: number} = this.player.getPosition()
 
-    	const playerWidth = parseFloat(getComputedStyle(this.player.getDom()).width)
-    	const playerHeight = parseFloat(getComputedStyle(this.player.getDom()).height)
+    	const playerWidth = parseInt(getComputedStyle(this.player.getDom()).width)
+    	const playerHeight = parseInt(getComputedStyle(this.player.getDom()).height)
 
     	const mapBlockSize = map.getBlockSize()
 

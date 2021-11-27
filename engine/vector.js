@@ -12,8 +12,8 @@ export default class Vector {
         if (this.player.getDom() === null)
             throw new Error("Cannot apply new player position to player that have not dom. Use player.render() first");
         const playerPxPosition = this.player.getPosition();
-        const playerWidth = parseFloat(getComputedStyle(this.player.getDom()).width);
-        const playerHeight = parseFloat(getComputedStyle(this.player.getDom()).height);
+        const playerWidth = parseInt(getComputedStyle(this.player.getDom()).width);
+        const playerHeight = parseInt(getComputedStyle(this.player.getDom()).height);
         const mapBlockSize = map.getBlockSize();
         const self = this;
         const gravity = function () {
