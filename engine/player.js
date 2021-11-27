@@ -41,8 +41,10 @@ export default class Player {
     }
     updatePosition() {
         if (this.dom !== undefined) {
-            this.xPosition = parseFloat(getComputedStyle(this.dom).left);
-            this.yPosition = parseFloat(getComputedStyle(this.dom).top);
+            const nodeHeight = parseFloat(getComputedStyle(this.dom).height);
+            const nodeWidth = parseFloat(getComputedStyle(this.dom).width);
+            this.xPosition = parseFloat(getComputedStyle(this.dom).left) + (nodeWidth / 2);
+            this.yPosition = parseFloat(getComputedStyle(this.dom).top) + (nodeHeight / 2);
         }
     }
     getPosition() {
