@@ -41,28 +41,19 @@ export default class Player {
     if(this.yStartPosition !== null)
       	dom.style.top = `${this.yStartPosition}px`
 
-	this.xPosition = this.xStartPosition;
-    this.yPosition = this.yStartPosition;
-
 	this.dom = dom
     
 	this.dom.player = this
+    this.updatePosition()
     return dom
     
   }
   private dom: HTMLPlayerElement | null = null
   updatePosition():void{
     	if(this.dom !== undefined){
-          	let nodeHeight:number, nodeWidth:number
-          	if(document.body.contains(this.dom)){
-            	nodeHeight = parseFloat(getComputedStyle(this.dom).height)
-            	nodeWidth = parseFloat(getComputedStyle(this.dom).width)
-            }
-          	else{
-              	nodeHeight = parseFloat(this.dom.style.height)
-            	nodeWidth = parseFloat(this.dom.style.width)
-            }
-          
+          	const nodeHeight = parseFloat(getComputedStyle(this.dom).height)
+          	const nodeWidth = parseFloat(getComputedStyle(this.dom).width)
+
           	if(!Number.isNaN(nodeHeight) && !Number.isNaN(nodeWidth)){
             	this.xPosition = parseFloat(getComputedStyle(this.dom).left) + (nodeWidth/2)
               	this.yPosition = parseFloat(getComputedStyle(this.dom).top) + (nodeHeight/2)
