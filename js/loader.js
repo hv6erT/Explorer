@@ -32,6 +32,10 @@ const loadGame = async ()=>{
             case "ArrowLeft":
             	GamePlayer.goBackward()
             	break
+          	case "ArrowTop":
+          	case "Space":
+            	GamePlayer.jumpTop()
+            	break;
         }
     })
   

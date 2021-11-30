@@ -43,10 +43,10 @@ export default class Vector {
             }
         };
         const jumpTop = async function () {
-            const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + 1);
+            const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y - (playerHeight / 2) - 1);
             if (blockAtTop.type === "penetrable") {
-                playerPxPosition.y++;
-                //self.player.getDom().style.left=`${playerPxPosition.y}px`
+                playerPxPosition.y--;
+                self.player.getDom().style.top = `${playerPxPosition.y - (playerHeight / 2)}px`;
             }
         };
         if (this.x != 0 && this.y != 0) {
@@ -62,15 +62,18 @@ export default class Vector {
             }
             else if (this.x < 0) {
                 for (let i = 0; i > this.x; i--) {
-                    goBackward();
                     gravity();
+                    goBackward();
                 }
                 gravity();
             }
         }
         else if (this.y != 0) {
-            if (this.y > 0) {
-                //jumpTop
+            if (this.y < 0) {
+                for (let i = 0; i > this.y; i--) {
+                    gravity();
+                    jumpTop();
+                }
                 gravity();
             }
         }

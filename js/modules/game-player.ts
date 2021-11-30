@@ -42,4 +42,12 @@ export default class GamePlayer extends Game{
     	const vector: Vector = new Vector(vectorOptions)
     	vector.apply(GameMap.map)
   }
+  static jumpTop(): void{
+    	const vectorOptions: VectorOptions = {
+          	player: GamePlayer.player,
+          	y: -100
+        }
+    	const vector: Vector = new Vector(vectorOptions)
+    	vector.apply(GameMap.map)
+  }
 }

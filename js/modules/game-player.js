@@ -30,6 +30,14 @@ export default class GamePlayer extends Game {
         const vector = new Vector(vectorOptions);
         vector.apply(GameMap.map);
     }
+    static jumpTop() {
+        const vectorOptions = {
+            player: GamePlayer.player,
+            y: -100
+        };
+        const vector = new Vector(vectorOptions);
+        vector.apply(GameMap.map);
+    }
 }
 GamePlayer.playerBackground = "assets/alienGreen.png";
 GamePlayer.forwardSpeed = 5;
