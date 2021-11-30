@@ -90,7 +90,6 @@ export default class Vector {
     	else if(this.y!=0){
           	if(this.y<0){
               	for(let i=0; i>this.y; i--){
-                  	gravity()
                   	jumpTop()
                 }
               	gravity();
