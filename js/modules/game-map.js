@@ -99,7 +99,7 @@ export default class GameMap extends Game {
             throw new Error("Trying to create new map, one has already exist");
         const newMapOptions = {
             blocks: await GameMap.generate(GameMap.mapWidth),
-            xStartScroll: 2,
+            xStartScroll: 0,
             yStartScroll: 0,
             background: `url(${GameMap.mapBackground})`
         };

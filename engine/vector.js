@@ -16,29 +16,34 @@ export default class Vector {
         const playerHeight = parseFloat(getComputedStyle(this.player.getDom()).height);
         const mapBlockSize = map.getBlockSize();
         const self = this;
-        const gravity = function () {
-            let blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + (playerHeight / 2) + (mapBlockSize / 2) + 1);
-            while (blockAtBottom != null && blockAtBottom.type === "penetrable") {
-                playerPxPosition.y++;
-                self.player.getDom().style.top = `${playerPxPosition.y}px`;
-                blockAtBottom = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + (playerHeight / 2) + (mapBlockSize / 2) + 1);
-            }
+        const gravity = async function () {
+            let blockAtBottomLeft, blockAtBottomRight;
+            do {
+                blockAtBottomLeft = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + (playerHeight / 2) + 1);
+                blockAtBottomRight = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + (playerHeight / 2) + mapBlockSize + 1);
+                if (blockAtBottomLeft.type === "penetrable" && blockAtBottomRight.type === "penetrable") {
+                    playerPxPosition.y++;
+                    self.player.getDom().style.top = `${playerPxPosition.y - (playerHeight / 2)}px`;
+                }
+                else
+                    return;
+            } while (blockAtBottomLeft != null && blockAtBottomRight != null);
         };
-        const goForward = function () {
+        const goForward = async function () {
             const nextBlock = map.getBlockAtPxPosition(playerPxPosition.x + (playerWidth / 2) + (mapBlockSize / 2) + 1, playerPxPosition.y);
             if (nextBlock.type === "penetrable") {
                 playerPxPosition.x++;
-                self.player.getDom().style.left = `${playerPxPosition.x}px`;
+                self.player.getDom().style.left = `${playerPxPosition.x - (playerWidth / 2)}px`;
             }
         };
-        const goBackward = function () {
+        const goBackward = async function () {
             const previousBlock = map.getBlockAtPxPosition(playerPxPosition.x - (playerWidth / 2) - (mapBlockSize / 2) - 1, playerPxPosition.y);
             if (previousBlock.type === "penetrable") {
                 playerPxPosition.x--;
-                self.player.getDom().style.left = `${playerPxPosition.x}px`;
+                self.player.getDom().style.left = `${playerPxPosition.x - (playerWidth / 2)}px`;
             }
         };
-        const jumpTop = function () {
+        const jumpTop = async function () {
             const blockAtTop = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y + 1);
             if (blockAtTop.type === "penetrable") {
                 playerPxPosition.y++;
@@ -53,15 +58,15 @@ export default class Vector {
                 for (let i = 0; i < this.x; i++) {
                     gravity();
                     goForward();
-                    gravity();
                 }
+                gravity();
             }
             else if (this.x < 0) {
-                for (let i = this.x; i < 0; i++) {
-                    gravity();
+                for (let i = 0; i > this.x; i--) {
                     goBackward();
                     gravity();
                 }
+                gravity();
             }
         }
         else if (this.y != 0) {

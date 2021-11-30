@@ -38,13 +38,13 @@ export default class Player {
             this.xPosition = this.xStartPosition + (this.width / 2);
         }
         else
-            this.xPosition = 0 + (this.width / 2);
+            this.xPosition = (this.width / 2);
         if (this.yStartPosition !== null) {
             dom.style.top = `${this.yStartPosition}px`;
             this.yPosition = this.yStartPosition + (this.height / 2);
         }
         else
-            this.yPosition = 0 + (this.height / 2);
+            this.yPosition = (this.height / 2);
         this.dom = dom;
         this.dom.player = this;
         return dom;
@@ -53,10 +53,8 @@ export default class Player {
         if (this.dom !== undefined) {
             const nodeHeight = parseFloat(getComputedStyle(this.dom).height);
             const nodeWidth = parseFloat(getComputedStyle(this.dom).width);
-            if (!Number.isNaN(nodeHeight) && !Number.isNaN(nodeWidth)) {
-                this.xPosition = parseFloat(getComputedStyle(this.dom).left) + (nodeWidth / 2);
-                this.yPosition = parseFloat(getComputedStyle(this.dom).top) + (nodeHeight / 2);
-            }
+            this.xPosition = parseFloat(getComputedStyle(this.dom).left) + (nodeWidth / 2);
+            this.yPosition = parseFloat(getComputedStyle(this.dom).top) + (nodeHeight / 2);
         }
     }
     getPosition() {

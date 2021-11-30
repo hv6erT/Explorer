@@ -111,7 +111,7 @@ export default class GameMap extends Game{
 
       	const newMapOptions: MapOptions = {
           	blocks: await GameMap.generate(GameMap.mapWidth),
-        	xStartScroll: 2,
+        	xStartScroll: 0,
         	yStartScroll: 0,
         	background: `url(${GameMap.mapBackground})`
         }
