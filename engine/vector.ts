@@ -34,7 +34,7 @@ export default class Vector {
           	let blockAtBottomLeft, blockAtBottomRight
           	do{
               	blockAtBottomLeft = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+(playerHeight/2)+1)
-            	blockAtBottomRight = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+(playerHeight/2)+mapBlockSize+1)
+            	blockAtBottomRight = map.getBlockAtPxPosition(playerPxPosition.x, playerPxPosition.y+(playerHeight/2)+mapBlockSize-1)
 				if(blockAtBottomLeft.type === "penetrable" && blockAtBottomRight.type === "penetrable"){
                 	playerPxPosition.y++
                 	self.player.getDom().style.top = `${playerPxPosition.y-(playerHeight/2)}px`
